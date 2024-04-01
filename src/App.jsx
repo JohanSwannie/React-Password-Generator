@@ -10,11 +10,11 @@ function App() {
   const passwordRef = useRef();
 
   const copyPasswordToClipboard = () => {
-    window.navigator.clipboard.writeText();
+    window.navigator.clipboard.writeText(password);
     passwordRef.current?.select();
   };
-  const setThePassword = useCallback(() => {
-    const passw = "";
+  const generatePassword = useCallback(() => {
+    let passw = "";
     let passwString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     if (allowNumbers) {
       passwString += "0123456789";
@@ -23,15 +23,16 @@ function App() {
       passwString += "!@#$%^&*()_";
     }
     const passwArray = passwString.split("");
-    for (let i = 0; i < passwArray.length; i++) {
+    for (let i = 0; i < passwordLength; i++) {
       const character =
         passwArray[Math.floor(Math.random() * passwArray.length + 1)];
       passw += character;
     }
+    setPassword(passw);
   }, [allowNumbers, allowSpecialCharacters, passwordLength]);
 
   useEffect(() => {
-    setNewPassword();
+    generatePassword();
   }, [allowNumbers, allowSpecialCharacters, passwordLength, newPassword]);
 
   return (
@@ -42,7 +43,7 @@ function App() {
           type="text"
           value={password}
           placeholder="password"
-          readonly
+          readOnly
           ref={passwordRef}
         />
         <button onClick={copyPasswordToClipboard}>Copy</button>
@@ -52,12 +53,12 @@ function App() {
       </div>
       <div className="bottom-row">
         <div>
-          <label>Password Length : </label>
+          <label>Password Length : {passwordLength}</label>
           <input
             type="range"
-            value={passwordLength}
             min={9}
             max={20}
+            value={passwordLength}
             onChange={(event) => setPasswordLength(event.target.value)}
           />
         </div>
