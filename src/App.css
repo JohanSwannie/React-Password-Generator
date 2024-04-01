@@ -7,9 +7,50 @@
 }
 
 body {
-  display: grid;
-  justify-content: center;
-  align-items: center;
+  background-color: rgb(223, 236, 223);
+  max-width: 1280px;
+  margin: auto;
+  padding: 2rem;
   text-align: center;
-  background-color: bisque;
+}
+
+.password-generator {
+  background-color: rgb(128, 112, 112);
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 3rem;
+  height: 90vh;
+}
+
+h2 {
+  margin-bottom: 7rem;
+}
+
+.top-row {
+  margin-bottom: 7rem;
+}
+
+label {
+  margin-right: 1rem;
+}
+
+.bottom-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 80vw;
+  margin: auto;
+}
+
+button,
+input[type="text"] {
+  border: 3px solid #fff;
+  padding: 0.6rem;
+}
+
+button {
+  background-color: red;
+}
+
+input[type="text"] {
+  background-color: lightseagreen;
 }
